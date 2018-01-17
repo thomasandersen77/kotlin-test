@@ -24,7 +24,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<kotlin.version>1.2.0</kotlin.version>
-		<intern-prb-pensjonsberegning-wsdl.version>56.1.1</intern-prb-pensjonsberegning-wsdl.version>
 	</properties>
 
 	<dependencies>
@@ -103,28 +102,6 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.9.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
-		<dependency>
-			<groupId>org.eclipse.jgit</groupId>
-			<artifactId>org.eclipse.jgit</artifactId>
-			<version>4.9.0.201710071750-r</version>
-		</dependency>
-
-		<dependency>
-			<groupId>no.spk.ws.tjenestekatalog</groupId>
-			<artifactId>intern-prb-pensjonsberegning-wsdl</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-			<version>${intern-prb-pensjonsberegning-wsdl.version}</version>
 		</dependency>
 	</dependencies>
 

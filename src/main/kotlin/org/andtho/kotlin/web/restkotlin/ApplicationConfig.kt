@@ -2,7 +2,6 @@ package org.andtho.kotlin.web.restkotlin
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.mongodb.MongoClient
-import no.spk.pensjonsberegning.Pensjonsberegning
 import org.glassfish.jersey.server.ResourceConfig
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
-import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.stereotype.Component
 import javax.ws.rs.ext.ContextResolver
 import javax.ws.rs.ext.Provider
