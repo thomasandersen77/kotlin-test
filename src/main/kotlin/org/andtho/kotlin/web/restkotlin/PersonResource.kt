@@ -10,10 +10,10 @@ class PersonResource @Autowired constructor(
                      val repository: PersonRepository) {
 
     @GET
-    @Path("{id}")
+    @Path("{_id}")
     @Produces("application/json")
-    fun getPerson(@PathParam("id") id : Int) : List<Person> {
-        val personList = repository.getPersonById(id) ?: throw NotFoundException("No person with id = $id")
+    fun getPerson(@PathParam("_id") id : String) : List<Person> {
+        val personList = repository.getPersonById(id) ?: throw NotFoundException("No person with _id = $id")
         return personList.toList()
     }
 

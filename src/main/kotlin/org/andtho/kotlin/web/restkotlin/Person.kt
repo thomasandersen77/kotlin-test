@@ -8,9 +8,10 @@ import java.util.*
 
 @Entity
 class Person
-            constructor(@Id var id : String = "", val firstname : String,
-                  val lastname : String,
-                  val birthdate : LocalDate = LocalDate.now()
+            constructor(@Id var _id: String = "",
+                        val firstname : String = "",
+                        val lastname : String = "",
+                        val birthdate : LocalDate = LocalDate.now()
             ) {
 
 
