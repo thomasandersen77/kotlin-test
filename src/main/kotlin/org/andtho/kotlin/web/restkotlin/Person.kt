@@ -1,5 +1,6 @@
 package org.andtho.kotlin.web.restkotlin
 
+import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id
 import java.time.LocalDate
@@ -8,12 +9,11 @@ import java.util.*
 
 @Entity
 class Person
-            constructor(@Id var _id: String = "",
+            constructor(@Id var id : String? = null,
                         val firstname : String = "",
                         val lastname : String = "",
                         val birthdate : LocalDate = LocalDate.now()
             ) {
-
 
 
     fun alder() : Int = Period.between(birthdate, LocalDate.now()).years

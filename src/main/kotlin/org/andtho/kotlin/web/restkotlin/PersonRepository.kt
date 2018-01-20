@@ -1,20 +1,32 @@
 package org.andtho.kotlin.web.restkotlin
 
+import org.bson.types.ObjectId
 import org.mongodb.morphia.Datastore
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
 class PersonRepository @Autowired constructor(val datastore: Datastore) {
+    val log : Logger = LoggerFactory.getLogger(PersonRepository::class.java)
 
-    fun getPersonById(id: String) : MutableList<Person>? {
-        val createQuery = datastore.createQuery(Person::class.java)
-        return createQuery.field("_id").equal(id).asList()
+    fun getPersonById(id: String) : Person? {
+        val query = datastore.createQuery(Person::class.java)
+        val person = query.field("_id").equal(ObjectId(id)).get()
+        log.info("Found Person with id = ${person.id}")
+        return person
+    }
+
+    fun getPersonList() : List<Person> {
+        val listOfPeople = datastore.createQuery(Person::class.java).asList()
+        log.info("List of people = {}", listOfPeople)
+        return listOfPeople
     }
 
     fun createPerson(person: Person) : Person {
         val key = datastore.save(person)
-        println("Created a person. Key = ${key}")
+        log.info("Created a person. Key = ${key}, ${person.id} ${person.lastname} ${person.firstname}")
         return person
     }
 

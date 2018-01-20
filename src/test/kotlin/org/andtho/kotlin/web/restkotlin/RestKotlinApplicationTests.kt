@@ -1,6 +1,8 @@
 
 package org.andtho.kotlin.web.restkotlin
 
+import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
@@ -18,13 +20,34 @@ class RestKotlinApplicationTests {
 	@Autowired lateinit var restTemplate: TestRestTemplate
 	@Autowired lateinit var datastore : Datastore
 
-
 	@Test
-	fun `get list of person`() {
-		val responseEntity = restTemplate.getForEntity("/person/0", List::class.java)
+	fun `get person`() {
+		val responseEntity = restTemplate.getForEntity("/person/5a619fc8925764033702d8eb", Person::class.java)
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
+		val person = responseEntity.body
+		assertEquals("thomas2", person.firstname)
+		assertEquals("andersen", person.lastname)
 	}
+
+	@Test
+	fun `get list of people`() {
+		val responseEntity = restTemplate.getForEntity("/person", List::class.java)
+		assertNotNull(responseEntity)
+		assertEquals(200, responseEntity.statusCodeValue)
+		val mapper = ObjectMapper()
+		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true)
+		responseEntity.body.forEach(action = { it ->
+			println(it)
+			val string = it.toString().replace("=", ":")
+			println(string)
+			val person = mapper.readValue(string, Person::class.java)
+			assertNotNull(person)
+		})
+
+	}
+
+
 
 	@Test
 	fun `create person by http post`() {
