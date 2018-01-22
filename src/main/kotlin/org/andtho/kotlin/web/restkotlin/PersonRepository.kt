@@ -14,19 +14,19 @@ class PersonRepository @Autowired constructor(val datastore: Datastore) {
     fun getPersonById(id: String) : Person? {
         val query = datastore.createQuery(Person::class.java)
         val person = query.field("_id").equal(ObjectId(id)).get()
-        log.info("Found Person with id = ${person.id}")
+        log.info("Get person with id = ${person.id}")
         return person
     }
 
     fun getPersonList() : List<Person> {
         val listOfPeople = datastore.createQuery(Person::class.java).asList()
-        log.info("List of people = {}", listOfPeople)
+        log.info("get list of people = ${listOfPeople.size}")
         return listOfPeople
     }
 
     fun createPerson(person: Person) : Person {
         val key = datastore.save(person)
-        log.info("Created a person. Key = ${key}, ${person.id} ${person.lastname} ${person.firstname}")
+        log.info("Created person. Key = ${key.id}")
         return person
     }
 

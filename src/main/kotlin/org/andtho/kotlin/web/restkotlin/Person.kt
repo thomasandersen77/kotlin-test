@@ -1,11 +1,9 @@
 package org.andtho.kotlin.web.restkotlin
 
-import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id
 import java.time.LocalDate
 import java.time.Period
-import java.util.*
 
 @Entity
 class Person

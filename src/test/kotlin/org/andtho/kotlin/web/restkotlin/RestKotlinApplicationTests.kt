@@ -30,10 +30,7 @@ class RestKotlinApplicationTests {
 	@Autowired lateinit var datastore : Datastore
 
 	private val starter = MongodStarter.getDefaultInstance()
-
-	private var _mongodExe: MongodExecutable? = null
 	private var _mongod: MongodProcess? = null
-
 	private var _mongo: MongoClient? = null
 
 	@Before
@@ -54,16 +51,21 @@ class RestKotlinApplicationTests {
 
 	@Test
 	fun `get person`() {
-		val responseEntity = restTemplate.getForEntity("/person/5a635df6dbc6900bdefd6139", Person::class.java)
+		val key = datastore.save(Person(firstname = "test", lastname = "lastname"))
+
+		val responseEntity = restTemplate.getForEntity("/person/${key.id}", Person::class.java)
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
 		val person = responseEntity.body
-		assertEquals("thomas2", person.firstname)
-		assertEquals("andersen", person.lastname)
+		assertEquals("test", person.firstname)
+		assertEquals("lastname", person.lastname)
 	}
 
 	@Test
 	fun `get list of people`() {
+		datastore.save(Person(firstname = "test1", lastname = "lastname1"))
+		datastore.save(Person(firstname = "test2", lastname = "lastname2"))
+
 		val responseEntity = restTemplate.getForEntity("/person", List::class.java)
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
@@ -71,10 +73,6 @@ class RestKotlinApplicationTests {
 		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true)
 		responseEntity.body.forEach(action = { it ->
 			println(it)
-		/*	val string = it.toString().replace("=", ":")
-			println(string)
-			val person = mapper.readValue(string, Person::class.java)
-			assertNotNull(person)*/
 		})
 
 	}
@@ -86,9 +84,9 @@ class RestKotlinApplicationTests {
 		val name = "thomas2"
 		val personUnderTest = Person(firstname = name, lastname = "andersen")
 
-		/*val responseEntity = restTemplate.postForEntity("/person", personUnderTest, Person::class.java)
+		val responseEntity = restTemplate.postForEntity("/person", personUnderTest, Person::class.java)
 		assertNotNull(responseEntity)
-		assertEquals(200, responseEntity.statusCodeValue)*/
+		assertEquals(200, responseEntity.statusCodeValue)
 
 		datastore.createQuery(Person::class.java).filter("firstname", name).asIterable()
 				.forEach({
