@@ -1,8 +1,16 @@
 
 package org.andtho.kotlin.web.restkotlin
 
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.mongodb.MongoClient
+import de.flapdoodle.embed.mongo.MongodProcess
+import de.flapdoodle.embed.mongo.MongodStarter
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder
+import de.flapdoodle.embed.mongo.config.Net
+import de.flapdoodle.embed.mongo.distribution.Version
+import de.flapdoodle.embed.process.runtime.Network
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,15 +19,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-import com.mongodb.MongoClient
-import de.flapdoodle.embed.process.runtime.Network
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder
-import de.flapdoodle.embed.mongo.MongodProcess
-import de.flapdoodle.embed.mongo.MongodExecutable
-import de.flapdoodle.embed.mongo.MongodStarter
-import de.flapdoodle.embed.mongo.config.Net
-import de.flapdoodle.embed.mongo.distribution.Version
-import org.junit.*
 
 
 @RunWith(SpringRunner::class)
@@ -69,8 +68,6 @@ class RestKotlinApplicationTests {
 		val responseEntity = restTemplate.getForEntity("/person", List::class.java)
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
-		val mapper = ObjectMapper()
-		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true)
 		responseEntity.body.forEach(action = { it ->
 			println(it)
 		})

@@ -20,7 +20,7 @@ class PersonRepository @Autowired constructor(val datastore: Datastore) {
 
     fun getPersonList() : List<Person> {
         val listOfPeople = datastore.createQuery(Person::class.java).asList()
-        log.info("get list of people = ${listOfPeople.size}")
+        log.info("Get list of ${listOfPeople.size} people")
         return listOfPeople
     }
 
