@@ -8,14 +8,13 @@ import de.flapdoodle.embed.mongo.config.MongodConfigBuilder
 import de.flapdoodle.embed.mongo.config.Net
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.core.env.Environment
 import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -27,25 +26,27 @@ class RestKotlinApplicationTests {
 
 	@Autowired lateinit var restTemplate: TestRestTemplate
 	@Autowired lateinit var datastore : Datastore
+	@Autowired lateinit var environment: Environment
 
-	private val starter = MongodStarter.getDefaultInstance()
-	private var _mongod: MongodProcess? = null
-	private var _mongo: MongoClient? = null
 
-	@Before
-	fun `start mongo db`() {
-		val port = 27017
-		val _mongodExe = starter.prepare(MongodConfigBuilder()
-				.version(Version.Main.DEVELOPMENT)
-				.net(Net("localhost", port, Network.localhostIsIPv6()))
-				.build())
-		_mongod = _mongodExe.start()
-		_mongo = MongoClient("localhost", port)
-	}
 
-	@After
-	fun tearDown() {
-		_mongod?.stop()
+	companion object {
+		private val starter = MongodStarter.getDefaultInstance()
+		private var _mongod: MongodProcess? = null
+		private var _mongo: MongoClient? = null
+	    @BeforeClass @JvmStatic fun beforeTest(){
+			val port = 27017
+			val _mongodExe = starter.prepare(MongodConfigBuilder()
+					.version(Version.Main.DEVELOPMENT)
+					.net(Net("localhost", port, Network.localhostIsIPv6()))
+					.build())
+			_mongod = _mongodExe.start()
+			_mongo = MongoClient("localhost", port)
+		}
+
+		@AfterClass @JvmStatic fun afterTest(){
+			_mongod?.stop()
+		}
 	}
 
 	@Test

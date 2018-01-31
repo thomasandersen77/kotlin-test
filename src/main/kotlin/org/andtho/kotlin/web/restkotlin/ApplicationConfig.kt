@@ -6,7 +6,6 @@ import org.glassfish.jersey.server.ResourceConfig
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
@@ -35,10 +34,6 @@ class MyObjectMapper : ContextResolver<ObjectMapper> {
 
 }
 
-@Configuration
-@EnableAutoConfiguration
-class MongoConfig{
-}
 
 @Component
 @Configuration
