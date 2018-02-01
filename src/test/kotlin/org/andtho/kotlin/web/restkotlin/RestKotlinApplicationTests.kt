@@ -34,6 +34,7 @@ class RestKotlinApplicationTests {
 		private val starter = MongodStarter.getDefaultInstance()
 		private var _mongod: MongodProcess? = null
 		private var _mongo: MongoClient? = null
+
 	    @BeforeClass @JvmStatic fun beforeTest(){
 			val port = 27017
 			val _mongodExe = starter.prepare(MongodConfigBuilder()
