@@ -3,10 +3,10 @@ package org.andtho.kotlin.web.restkotlin
 
 import org.bson.types.ObjectId
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
 import java.time.LocalDate
 import java.util.*
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 internal class PersonTest {
 
