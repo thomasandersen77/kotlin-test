@@ -8,17 +8,18 @@ import de.flapdoodle.embed.mongo.config.MongodConfigBuilder
 import de.flapdoodle.embed.mongo.config.Net
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
-import org.junit.*
+import org.andtho.kotlin.web.restkotlin.person.Person
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.core.env.Environment
 import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -26,9 +27,6 @@ class RestKotlinApplicationTests {
 
 	@Autowired lateinit var restTemplate: TestRestTemplate
 	@Autowired lateinit var datastore : Datastore
-	@Autowired lateinit var environment: Environment
-
-
 
 	companion object {
 		private val starter = MongodStarter.getDefaultInstance()
@@ -71,7 +69,7 @@ class RestKotlinApplicationTests {
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
 		responseEntity.body.forEach(action = { it ->
-			println(it)
+			println(it.toString())
 		})
 
 	}

@@ -1,6 +1,7 @@
 
-package org.andtho.kotlin.web.restkotlin
+package org.andtho.kotlin.web.restkotlin.person
 
+import org.andtho.kotlin.web.restkotlin.person.Person
 import org.bson.types.ObjectId
 import org.junit.Test
 import java.time.LocalDate
@@ -12,7 +13,7 @@ internal class PersonTest {
 
     @Test
     fun test_alder() {
-        val thomas = Person(ObjectId.get().toString(),"", "", LocalDate.of(1977, 9, 7))
+        val thomas = Person(ObjectId.get().toString(), "", "", LocalDate.of(1977, 9, 7))
         assertEquals(40, thomas.alder())
     }
 

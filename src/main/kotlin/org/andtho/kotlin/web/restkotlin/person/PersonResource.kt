@@ -1,4 +1,4 @@
-package org.andtho.kotlin.web.restkotlin
+package org.andtho.kotlin.web.restkotlin.person
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

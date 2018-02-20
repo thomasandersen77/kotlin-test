@@ -1,7 +1,12 @@
 package org.andtho.kotlin.web.restkotlin
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import com.mongodb.MongoClient
+import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestRepository
+import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestResource
+import org.andtho.kotlin.web.restkotlin.person.Person
+import org.andtho.kotlin.web.restkotlin.person.PersonResource
 import org.glassfish.jersey.server.ResourceConfig
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
@@ -22,6 +27,8 @@ final class JerseyConfig : ResourceConfig() {
 
     fun registerEndpoints() {
         register(PersonResource::class.java)
+        register(RequestResource::class.java)
+        register(MyObjectMapper::class.java)
     }
 }
 
@@ -29,7 +36,9 @@ final class JerseyConfig : ResourceConfig() {
 @Provider
 class MyObjectMapper : ContextResolver<ObjectMapper> {
     override fun getContext(p0: Class<*>?): ObjectMapper {
-        return ObjectMapper().findAndRegisterModules()
+        return ObjectMapper()
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
+                .findAndRegisterModules()
     }
 
 }

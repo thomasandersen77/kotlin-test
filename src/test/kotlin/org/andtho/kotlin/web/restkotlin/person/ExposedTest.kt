@@ -1,4 +1,4 @@
-package org.andtho.kotlin.web.restkotlin
+package org.andtho.kotlin.web.restkotlin.person
 
 import org.jetbrains.exposed.dao.IntIdTable
 import org.jetbrains.exposed.sql.*

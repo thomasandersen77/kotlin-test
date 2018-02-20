@@ -1,4 +1,4 @@
-package org.andtho.kotlin.web.restkotlin
+package org.andtho.kotlin.web.restkotlin.person
 
 import org.bson.types.ObjectId
 import org.mongodb.morphia.Datastore

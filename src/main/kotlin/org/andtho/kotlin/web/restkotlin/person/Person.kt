@@ -1,4 +1,4 @@
-package org.andtho.kotlin.web.restkotlin
+package org.andtho.kotlin.web.restkotlin.person
 
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id

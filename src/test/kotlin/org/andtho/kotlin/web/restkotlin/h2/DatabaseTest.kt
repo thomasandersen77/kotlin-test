@@ -1,5 +1,8 @@
 package org.andtho.kotlin.web.restkotlin.h2
 
+import org.andtho.kotlin.web.restkotlin.h2.DatabaseTest.Person.firstname
+import org.andtho.kotlin.web.restkotlin.h2.DatabaseTest.Person.id
+import org.andtho.kotlin.web.restkotlin.h2.DatabaseTest.Person.lastname
 import org.h2.jdbcx.JdbcDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -49,15 +52,15 @@ class DatabaseTest {
             logger.addLogger(StdOutSqlLogger)
 
             val personId = Person.insert {
-                it[Person.firstname] = "firstname"
-                it[Person.lastname] = "lastname"
+                it[Person.firstname] = "thomas"
+                it[Person.lastname] = "mylastname"
             }
-            val query : Query = Person.select { Person.firstname eq "firstname"}
+            println(personId)
+            val query : Query = Person.select { Person.firstname eq "thomas"}
             query.filterNotNull()
                     .iterator()
-                    .forEach { println(it) }
+                    .forEach { println("Person: ${it[firstname]} ${it[lastname]}") }
 
-            //println("person = ${}")
         }
 
     }
