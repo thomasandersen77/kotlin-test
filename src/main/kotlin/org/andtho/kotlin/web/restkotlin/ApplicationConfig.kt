@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.mongodb.MongoClient
 import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestRepository
 import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestResource
+import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
+import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Response
 import org.andtho.kotlin.web.restkotlin.person.Person
 import org.andtho.kotlin.web.restkotlin.person.PersonResource
 import org.glassfish.jersey.server.ResourceConfig
@@ -50,7 +52,9 @@ class ConfigureMorphia @Autowired constructor(val env : Environment) {
     @Bean
     fun datastore() : Datastore {
         val morphia = Morphia()
+        morphia.map(Request::class.java)
         morphia.map(Person::class.java)
+
         val mongoClient = MongoClient( env.getProperty("mongodb.host"), env.getProperty("mongodb.port").toInt() )
         return morphia.createDatastore(mongoClient, "test")
     }

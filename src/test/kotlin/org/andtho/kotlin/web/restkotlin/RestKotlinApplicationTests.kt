@@ -1,16 +1,9 @@
 
 package org.andtho.kotlin.web.restkotlin
 
-import com.mongodb.MongoClient
-import de.flapdoodle.embed.mongo.MongodProcess
-import de.flapdoodle.embed.mongo.MongodStarter
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder
-import de.flapdoodle.embed.mongo.config.Net
-import de.flapdoodle.embed.mongo.distribution.Version
-import de.flapdoodle.embed.process.runtime.Network
 import org.andtho.kotlin.web.restkotlin.person.Person
-import org.junit.AfterClass
-import org.junit.BeforeClass
+import org.junit.ClassRule
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
@@ -25,28 +18,16 @@ import kotlin.test.assertNotNull
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestKotlinApplicationTests {
 
+/*	companion object {
+		@ClassRule @JvmField
+		val mongoServer = MongoServerResource
+	}*/
+
+	@get:Rule
+	val mongoServer = MongoServerPerTestResource
+
 	@Autowired lateinit var restTemplate: TestRestTemplate
 	@Autowired lateinit var datastore : Datastore
-
-	companion object {
-		private val starter = MongodStarter.getDefaultInstance()
-		private var _mongod: MongodProcess? = null
-		private var _mongo: MongoClient? = null
-
-	    @BeforeClass @JvmStatic fun beforeTest(){
-			val port = 27017
-			val _mongodExe = starter.prepare(MongodConfigBuilder()
-					.version(Version.Main.DEVELOPMENT)
-					.net(Net("localhost", port, Network.localhostIsIPv6()))
-					.build())
-			_mongod = _mongodExe.start()
-			_mongo = MongoClient("localhost", port)
-		}
-
-		@AfterClass @JvmStatic fun afterTest(){
-			_mongod?.stop()
-		}
-	}
 
 	@Test
 	fun `get person`() {

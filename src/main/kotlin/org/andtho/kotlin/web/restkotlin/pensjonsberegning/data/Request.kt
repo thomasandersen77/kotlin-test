@@ -1,8 +1,6 @@
 package org.andtho.kotlin.web.restkotlin.pensjonsberegning.data
 
-data class Request(
-        val id : String,
-        val requestId : String
-) {
-    
+import org.mongodb.morphia.annotations.Id
+
+class Request constructor(@Id var id : String? = null, val requestId : String = ""){
 }
