@@ -5,6 +5,7 @@ import org.andtho.kotlin.web.restkotlin.MongoServerResource
 import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
 import org.bson.types.ObjectId
 import org.junit.Assert.assertNotNull
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,10 +20,12 @@ import kotlin.test.assertTrue
 class RequestRepositoryTest {
 
     companion object {
+        @JvmField @ClassRule
+        val mongoServer = MongoServerResource
     }
     // @Rule
-    //@JvmField
-    @get:Rule val mongoServer = MongoServerPerTestResource
+    // @JvmField
+    // @get:Rule val mongoServer = MongoServerPerTestResource
 
     @Autowired lateinit var requestRepository: RequestRepository
     @Autowired lateinit var restTemplate: TestRestTemplate;
