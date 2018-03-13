@@ -18,13 +18,13 @@ import kotlin.test.assertNotNull
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestKotlinApplicationTests {
 
-/*	companion object {
+	companion object {
 		@ClassRule @JvmField
 		val mongoServer = MongoServerResource
-	}*/
+	}
 
-	@get:Rule
-	val mongoServer = MongoServerPerTestResource
+	//@get:Rule
+	//val mongoServer = MongoServerPerTestResource
 
 	@Autowired lateinit var restTemplate: TestRestTemplate
 	@Autowired lateinit var datastore : Datastore

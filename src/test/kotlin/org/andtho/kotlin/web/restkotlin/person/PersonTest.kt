@@ -1,7 +1,6 @@
 
 package org.andtho.kotlin.web.restkotlin.person
 
-import org.andtho.kotlin.web.restkotlin.person.Person
 import org.bson.types.ObjectId
 import org.junit.Test
 import java.time.LocalDate

@@ -1,5 +1,6 @@
 package org.andtho.kotlin.web.restkotlin.pensjonsberegning
 
+import com.mongodb.annotations.ThreadSafe
 import org.andtho.kotlin.web.restkotlin.MongoServerPerTestResource
 import org.andtho.kotlin.web.restkotlin.MongoServerResource
 import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
@@ -15,6 +16,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertTrue
 
+@ThreadSafe
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RequestRepositoryTest {
