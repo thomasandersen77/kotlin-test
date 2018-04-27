@@ -1,9 +1,9 @@
 
 package org.andtho.kotlin.web.restkotlin
 
+import com.mongodb.annotations.ThreadSafe
 import org.andtho.kotlin.web.restkotlin.person.Person
 import org.junit.ClassRule
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mongodb.morphia.Datastore
@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
+@ThreadSafe
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestKotlinApplicationTests {
@@ -45,6 +46,8 @@ class RestKotlinApplicationTests {
 	fun `get list of people`() {
 		datastore.save(Person(firstname = "test1", lastname = "lastname1"))
 		datastore.save(Person(firstname = "test2", lastname = "lastname2"))
+		datastore.save(Person(firstname = "test3", lastname = "lastname2"))
+		datastore.save(Person(firstname = "test4", lastname = "lastname2"))
 
 		val responseEntity = restTemplate.getForEntity("/person", List::class.java)
 		assertNotNull(responseEntity)
@@ -66,7 +69,8 @@ class RestKotlinApplicationTests {
 		assertNotNull(responseEntity)
 		assertEquals(200, responseEntity.statusCodeValue)
 
-		datastore.createQuery(Person::class.java).filter("firstname", name).asIterable()
+		datastore.createQuery(Person::class.java).filter("firstname", name)
+				.asIterable()
 				.forEach({
 					println("${it.firstname} ${it.lastname} ")
 				})

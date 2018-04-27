@@ -7,6 +7,7 @@ import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
 import org.bson.types.ObjectId
 import org.junit.Assert.assertNotNull
 import org.junit.ClassRule
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,6 +33,7 @@ class RequestRepositoryTest {
     @Autowired lateinit var requestRepository: RequestRepository
     @Autowired lateinit var restTemplate: TestRestTemplate;
 
+    @Ignore
     @Test
     fun store() {
 

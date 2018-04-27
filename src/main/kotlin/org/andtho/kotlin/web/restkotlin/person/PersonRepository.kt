@@ -21,6 +21,9 @@ class PersonRepository @Autowired constructor(val datastore: Datastore) {
     fun getPersonList() : List<Person> {
         val listOfPeople = datastore.createQuery(Person::class.java).asList()
         log.info("Get list of ${listOfPeople.size} people")
+        for(person in listOfPeople) {
+            log.info("Fond person with name=${person.firstname}")
+        }
         return listOfPeople
     }
 

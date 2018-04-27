@@ -1,6 +1,7 @@
 package org.andtho.kotlin.web.restkotlin
 
 import com.mongodb.MongoClient
+import com.mongodb.annotations.ThreadSafe
 import de.flapdoodle.embed.mongo.MongodProcess
 import de.flapdoodle.embed.mongo.MongodStarter
 import de.flapdoodle.embed.mongo.config.IMongoCmdOptions
@@ -11,7 +12,7 @@ import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
 import org.junit.rules.ExternalResource
 
-
+@ThreadSafe
 object MongoServerResource : ExternalResource() {
     private val starter = MongodStarter.getDefaultInstance()
     private var _mongod: MongodProcess? = null
