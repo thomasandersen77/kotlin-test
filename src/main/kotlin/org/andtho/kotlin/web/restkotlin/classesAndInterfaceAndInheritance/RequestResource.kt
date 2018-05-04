@@ -1,6 +1,6 @@
-package org.andtho.kotlin.web.restkotlin.pensjonsberegning
+package org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance
 
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data.Request
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import javax.ws.rs.*

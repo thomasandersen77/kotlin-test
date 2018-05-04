@@ -3,10 +3,10 @@ package org.andtho.kotlin.web.restkotlin
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.mongodb.MongoClient
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestRepository
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.RequestResource
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Response
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.RequestRepository
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.RequestResource
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data.Request
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data.Response
 import org.andtho.kotlin.web.restkotlin.person.Person
 import org.andtho.kotlin.web.restkotlin.person.PersonResource
 import org.glassfish.jersey.server.ResourceConfig

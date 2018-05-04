@@ -3,7 +3,8 @@ package org.andtho.kotlin.web.restkotlin.pensjonsberegning
 import com.mongodb.annotations.ThreadSafe
 import org.andtho.kotlin.web.restkotlin.MongoServerPerTestResource
 import org.andtho.kotlin.web.restkotlin.MongoServerResource
-import org.andtho.kotlin.web.restkotlin.pensjonsberegning.data.Request
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.RequestRepository
+import org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data.Request
 import org.bson.types.ObjectId
 import org.junit.Assert.assertNotNull
 import org.junit.ClassRule

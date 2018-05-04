@@ -1,4 +1,4 @@
-package org.andtho.kotlin.web.restkotlin.pensjonsberegning.data
+package org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data
 
 import org.mongodb.morphia.annotations.Id
 
