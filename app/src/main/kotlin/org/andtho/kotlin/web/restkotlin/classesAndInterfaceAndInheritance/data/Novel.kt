@@ -1,13 +1,15 @@
 package org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data
 
+import java.util.*
+
 class Novel(var id: String, var content: String, var isbn : String, var author: Author) : Book {
 
     override fun isbn(): String {
         return isbn;
     }
 
-    override fun id() : String {
-        return id
+    override fun id() : UUID {
+        return UUID.randomUUID()
     }
 
     override fun content(): String {

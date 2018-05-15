@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  mongodb:
+    build: mongodb
+    deploy:
+      replicas: 1
+  app:
+    build: app
+    deploy:
+      replicas: 3
+#    configs:
+#      - my_config
+#      - my_other_config
+#configs:
+#  my_config:
+#    file: ./my_config.txt
+#  my_other_config:
+#    external: true
