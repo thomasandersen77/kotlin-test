@@ -11,15 +11,18 @@ import javax.ws.rs.NotFoundException
 class RequestRepository @Autowired constructor(val datastore: Datastore) {
 
     fun store(request : Request) : String {
-        val id = datastore.save(request).id.toString()
-        return id
+        return datastore.save(request).id.toString()
     }
 
     fun findRequest(id: String): Request {
         val query = datastore.find(Request::class.java)
                 .field("_id").equal(ObjectId(id))
-        val request = if (query.get() != null) query.get() else throw NotFoundException("No request with id=$id")
-        return request
+        return if (query.get() != null) {
+                query.get()
+            }
+            else {
+                throw NotFoundException("No request with id=$id")
+            }
     }
 
 }

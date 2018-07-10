@@ -2,5 +2,4 @@ package org.andtho.kotlin.web.restkotlin.classesAndInterfaceAndInheritance.data
 
 import org.mongodb.morphia.annotations.Id
 
-class Request constructor(@Id var id : String? = null, val requestId : String = "") {
-}
+data class Request(@Id var id : String? = null, val requestId : String = "") 
